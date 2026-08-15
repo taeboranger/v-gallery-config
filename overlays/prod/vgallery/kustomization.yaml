@@ -4,12 +4,8 @@ namespace: vgallery-prod
 resources:
   - namespace.yaml
   - vault-static-secret.yaml
-  - migrate-job.yaml
   - ../../../base/vgallery
 images:
   - name: lightstone1/vgallery-prod
     newName: lightstone1/vgallery-prod
-    newTag: initial
-  - name: lightstone1/vgallery-prod-migrate
-    newName: lightstone1/vgallery-prod-migrate
     newTag: initial

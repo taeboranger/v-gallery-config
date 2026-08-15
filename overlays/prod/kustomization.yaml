@@ -2,4 +2,3 @@
 kind: Kustomization
 resources:
   - vgallery/
-  - minio-public/
