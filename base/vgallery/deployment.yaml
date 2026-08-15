@@ -1,0 +1,33 @@
+﻿apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vgallery-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: vgallery
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: vgallery
+    spec:
+      securityContext:
+        fsGroup: 1001
+      containers:
+        - name: vgallery
+          image: lightstone1/vgallery-prod
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3000
+          envFrom:
+            - secretRef:
+                name: vgallery-prod-secret
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 3000
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 3000
