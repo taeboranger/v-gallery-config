@@ -1,15 +1,15 @@
-﻿apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 namespace: vgallery-prod
 resources:
-  - namespace.yaml
-  - vault-static-secret.yaml
-  - migrate-job.yaml
-  - ../../../base/vgallery
+- namespace.yaml
+- vault-static-secret.yaml
+- migrate-job.yaml
+- ../../../base/vgallery
 images:
-  - name: lightstone1/vgallery-prod
-    newName: lightstone1/vgallery-prod
-    newTag: initial
-  - name: lightstone1/vgallery-prod-migrate
-    newName: lightstone1/vgallery-prod-migrate
-    newTag: initial
+- name: lightstone1/vgallery-prod
+  newName: lightstone1/vgallery-prod
+  newTag: 23e64850a9b81cf2c5f08f712e6f2fb073a57a09
+- name: lightstone1/vgallery-prod-migrate
+  newName: lightstone1/vgallery-prod-migrate
+  newTag: 23e64850a9b81cf2c5f08f712e6f2fb073a57a09
+apiVersion: kustomize.config.k8s.io/v1beta1
