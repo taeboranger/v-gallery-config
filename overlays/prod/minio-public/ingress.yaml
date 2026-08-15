@@ -1,0 +1,26 @@
+﻿apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: minio-public
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt
+    nginx.ingress.kubernetes.io/proxy-body-size: 0
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - media.cagea1.com
+      secretName: minio-public-tls
+  rules:
+    - host: media.cagea1.com
+      http:
+        paths:
+          # Keep /vgallery-images/<object-key> unchanged: this is MinIO's path-style S3 URL.
+          - path: /vgallery-images
+            pathType: Prefix
+            backend:
+              service:
+                # Verify with: kubectl -n minio get svc
+                name: minio
+                port:
+                  number: 9000
