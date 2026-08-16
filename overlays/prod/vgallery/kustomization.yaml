@@ -8,8 +8,8 @@ resources:
 images:
 - name: lightstone1/vgallery-prod
   newName: lightstone1/vgallery-prod
-  newTag: a23de222796efd4552980d5c9cea2eba68855c3a
+  newTag: 6db0f89bb0d20e87943192dc9584d62355a61748
 - name: lightstone1/vgallery-prod-migrate
   newName: lightstone1/vgallery-prod-migrate
-  newTag: a23de222796efd4552980d5c9cea2eba68855c3a
+  newTag: 6db0f89bb0d20e87943192dc9584d62355a61748
 apiVersion: kustomize.config.k8s.io/v1beta1
