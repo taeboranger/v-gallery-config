@@ -3,9 +3,13 @@ namespace: vgallery-prod
 resources:
 - namespace.yaml
 - vault-static-secret.yaml
+- migrate-job.yaml
 - ../../../base/vgallery
 images:
 - name: lightstone1/vgallery-prod
   newName: lightstone1/vgallery-prod
+  newTag: a23de222796efd4552980d5c9cea2eba68855c3a
+- name: lightstone1/vgallery-prod-migrate
+  newName: lightstone1/vgallery-prod-migrate
   newTag: a23de222796efd4552980d5c9cea2eba68855c3a
 apiVersion: kustomize.config.k8s.io/v1beta1

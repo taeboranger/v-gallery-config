@@ -1,0 +1,22 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: vgallery-db-migrate
+  annotations:
+    argocd.argoproj.io/hook: PreSync
+    argocd.argoproj.io/hook-delete-policy: BeforeHookCreation,HookSucceeded
+    # The VaultStaticSecret is created at -2, so the migration can consume its
+    # DATABASE_URL at -1 before the Deployment is synchronized.
+    argocd.argoproj.io/sync-wave: "-1"
+spec:
+  backoffLimit: 2
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: migrate
+          image: lightstone1/vgallery-prod-migrate:initial
+          imagePullPolicy: Always
+          envFrom:
+            - secretRef:
+                name: vgallery-prod-secret
