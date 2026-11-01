@@ -1,0 +1,12 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: media-anyproject-tls
+  namespace: default
+spec:
+  secretName: media-anyproject-tls
+  issuerRef:
+    kind: ClusterIssuer
+    name: letsencrypt-anyproject
+  dnsNames:
+  - media.anyproject.dev

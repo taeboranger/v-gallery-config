@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: minio-anyproject
+  namespace: default
+  annotations:
+    nginx.ingress.kubernetes.io/proxy-body-size: '0'
+    nginx.ingress.kubernetes.io/proxy-request-buffering: 'off'
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: media.anyproject.dev
+    http:
+      paths:
+      - backend:
+          service:
+            name: minio-external
+            port:
+              number: 9000
+        path: /
+        pathType: Prefix
+  tls:
+  - hosts:
+    - media.anyproject.dev
+    secretName: media-anyproject-tls
