@@ -3,7 +3,6 @@ namespace: vgallery-prod
 resources:
 - namespace.yaml
 - vault-static-secret.yaml
-- migrate-job.yaml
 - ../../../base/vgallery
 images:
 - name: lightstone1/vgallery-prod
@@ -13,3 +12,8 @@ images:
   newName: lightstone1/vgallery-prod-migrate
   newTag: df92972605cd6898b463af86aa0f1da51a4eb3bc
 apiVersion: kustomize.config.k8s.io/v1beta1
+
+# Service retired; keep configuration and data available for recovery.
+replicas:
+- name: vgallery-deployment
+  count: 0
